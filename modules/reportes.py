@@ -105,10 +105,8 @@ def rankingMayorVentas ():
 
     print("PRODUCTO MAS VENDIDO\n")
     masVendido = ranking.pop()
-    print(masVendido)
 
-    for k, v in masVendido.items():
-     print(f"{k}: {v} ")
+    print(f'El producto "{masVendido["nombre"]}" con código {masVendido["codigo"]} vendió {masVendido["cantidad"]} unidades.')
 
     guardarDatos(rutaMasVendido, masVendido)
 

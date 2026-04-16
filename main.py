@@ -1,4 +1,3 @@
-
 import modules.productos as p, modules.clientes as c, modules.mesas as m, modules.facturacion as f, modules.reportes as r
 
 def menu():
@@ -12,6 +11,7 @@ def menu():
     3.Clientes
     4.Facturación
     5.Registro de ventas
+    6.Producto más vendido
     0.Salir""")
         modulo = input("Digite el modulo a usar: ")
         print("-"*110)
@@ -89,6 +89,8 @@ Las opciones disponibles son:
                 f.facturar()
             case "5":
                 r.generarReporte()
+            case "6":
+                r.rankingMayorVentas()
             case "0":
                 print("Hasta pronto, tenga un buen dia.")
                 print("-"*110)
