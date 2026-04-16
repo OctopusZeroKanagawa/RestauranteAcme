@@ -1,0 +1,12 @@
+[
+  {
+    "codigo": "1",
+    "nombre": "Mesa 1",
+    "puestos": "4"
+  },
+  {
+    "codigo": "2",
+    "nombre": "Mesa 2",
+    "puestos": "10"
+  }
+]
