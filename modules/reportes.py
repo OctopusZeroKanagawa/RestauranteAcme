@@ -1,7 +1,8 @@
-from modules.utils import cargarDatos
+from modules.utils import cargarDatos, guardarDatos
 import csv
 
 rutaFacturas = "data/facturas.json"
+rutaMasVendido = "reports/reportes.json"
 
 def generarReporte():
     facturas = cargarDatos(rutaFacturas)
@@ -34,11 +35,8 @@ def generarReporte():
         mesa = factura["mesa"]["nombre"]
 
         totalCantidad = sum(item["cantidad"] for item in factura["productos"])
-
         subtotalBruto = sum(item["precio"] * item["cantidad"] for item in factura["productos"])
-
         subtotalIVA = sum((item["precio"] * item["cantidad"]) * (item["iva"] / 100) for item in factura["productos"])
-
         subtotal = factura["total"]
 
         totalBrutoGeneral += subtotalBruto
@@ -66,4 +64,55 @@ def generarReporte():
             writer.writerow(["TOTAL","",f"{totalBrutoGeneral:.2f}",f"{totalIvaGeneral:.2f}",f"{totalGeneral:.2f}"])
 
         print("Reporte exportado con éxito")
+
+def rankingMayorVentas ():
+    print("Ingrese los datos: ")
+    fechaInicio = input("Fecha inicio: ")
+    fechaFin = input("Fecha fin: ")
+
+    facturas = cargarDatos(rutaFacturas)
+
+    if not facturas:
+        print("No hay facturas registradas")
+        return
+
+    facturasFiltradas = [f for f in facturas if fechaInicio <= f["fecha"][:10] <= fechaFin]
+
+    if not facturasFiltradas:
+        print("No hay ventas en ese rango de fechas")
+        return
+
+    conteo = {}
+
+    for factura in facturasFiltradas:
+        for item in factura["productos"]:
+            codigo = item["codigo"]
+            nombre = item["nombre"]
+            cantidad = int(item["cantidad"])
+
+            if codigo not in conteo:
+                conteo[codigo] = {
+                    "nombre": nombre,
+                    "cantidad": 0
+                }
+
+            conteo[codigo]["cantidad"] += cantidad
+
+    ranking = [
+        {"codigo": cod, "nombre": data["nombre"],"cantidad": data["cantidad"]}for cod, data in conteo.items()]
+
+    ranking.sort(key=lambda x: x["cantidad"])
+
+    print("PRODUCTO MAS VENDIDO\n")
+    masVendido = ranking.pop()
+    print(masVendido)
+
+    for k, v in masVendido.items():
+     print(f"{k}: {v} ")
+
+    guardarDatos(rutaMasVendido, masVendido)
+
+    print("Producto más vendido exportado")
+    
+
 

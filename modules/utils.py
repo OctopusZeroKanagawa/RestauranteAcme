@@ -1,5 +1,4 @@
-import json
-import os
+import json, os
     
 def cargarDatos(ruta):
     if not os.path.exists(ruta):

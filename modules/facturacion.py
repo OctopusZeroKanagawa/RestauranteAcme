@@ -22,7 +22,7 @@ def verCarrito(carrito):
     
     print("Carrito actual:")
     for item in carrito:
-        print(f"Codigo: {item["codigo"]}, Producto: {item["nombre"]}, Unidades: {item["cantidad"]}, IVA:{item["iva"]}, Precio: {item["precio"]}, Subtotal: {item["subtotal"]}")
+        print(f"Codigo: {item['codigo']}, Producto: {item['nombre']}, Unidades: {item['cantidad']}, IVA:{item['iva']}, Precio: {item['precio']}, Subtotal: {item['subtotal']}")
 
 def agregarProducto(carrito, productos):
     codigo = input("Código del producto: ")
@@ -113,23 +113,23 @@ Por favor ingresa los datos solicitados:""")
                 guardarDatos(rutaFacturas, facturas)
 
                 print("FACTURA")
-                print(f"Fecha: {factura["fecha"]}")
-                print(f"Mesa: {mesa["nombre"]}")
-                print(f"Cliente: {cliente["nombre"]}")
+                print(f"Fecha: {factura['fecha']}")
+                print(f"Mesa: {mesa['nombre']}")
+                print(f"Cliente: {cliente['nombre']}")
                 print("-"*110)
                 print("PRODUCTOS")
                 print("-"*110)
-                print(f"{"COD":<5}{"NOMBRE":<15}{"CANT":<6}{"PRECIO":<10}{"IVA":<8}{"SUBTOTAL":<10}")
+                print(f"{'COD':<5}{'NOMBRE':<15}{'CANT':<6}{'PRECIO':<10}{'IVA':<8}{'SUBTOTAL':<10}")
 
                 for item in carrito:
-                    print(f"{item["codigo"]:<5}"
-                        f"{item["nombre"]:<15}"
-                        f"{item["cantidad"]:<6}"
-                        f"{item["precio"]:<10.2f}"
-                        f"{item["iva"]:<8.2f}"
-                        f"{item["subtotal"]:<10.2f}")
+                    print(f"{item['codigo']:<5}"
+                        f"{item['nombre']:<15}"
+                        f"{item['cantidad']:<6}"
+                        f"{item['precio']:<10.2f}"
+                        f"{item['iva']:<8.2f}"
+                        f"{item['subtotal']:<10.2f}")
                 print("-"*110)
-                print(f"{"TOTAL:":<46}{total:.2f}")
+                print(f"{'TOTAL:':<46}{total:.2f}")
                 print("-"*110)
                 break
 
