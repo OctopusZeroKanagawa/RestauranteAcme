@@ -1,6 +1,9 @@
 import json, os
+from pathlib import Path
     
 def cargarDatos(ruta):
+    rutaBase = Path(__file__).parent.parent
+    ruta = f"{rutaBase}/{ruta}"
     if not os.path.exists(ruta):
         return []
     with open(ruta, "r") as archivo:
@@ -12,6 +15,8 @@ def cargarDatos(ruta):
         return json.loads(contenido)    
 
 def guardarDatos(ruta,datos):
+    rutaBase = Path(__file__).parent.parent
+    ruta = f"{rutaBase}/{ruta}"
     with open(ruta,"w") as archivo:
         json.dump(datos,archivo, indent=4)
 
